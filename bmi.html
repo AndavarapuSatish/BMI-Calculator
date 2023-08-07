@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        function CalculateClick() {
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseInt(document.getElementById('age').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+
+            if (isNaN(age) || isNaN(height) || isNaN(weight)) {
+                alert("Please enter valid age, height, and weight.");
+                return;
+            }
+
+            const bmi = weight / ((height / 100) ** 2);
+
+            let resultText = "Your BMI is " + bmi.toFixed(2) + ". ";
+
+            if (gender == 'male') {
+                if (age < 18 && bmi < 16) {
+                    resultText += "<span style='color: red;'> Severely underweight</span>";
+                } 
+                else if (age < 18 && bmi < 18.5){
+                    resultText += "<span style='color: orange;'>Mildly underweight</span>";
+                }
+                else if (age <= 18 && bmi < 25){
+                    resultText += "<span style='color: green;'>Normal weight</span>";
+                }
+                else if (age < 18 && bmi < 30){
+                    resultText += "<span style='color: orange;'>Overweight</span>";
+                }
+                else if (age < 18 && bmi >= 40){
+                    resultText += "<span style='color: red;'>You are in obese</span>";
+                }
+
+
+
+                else if (age >= 18 && age <= 24) {
+                    if (bmi < 18.5) {
+                        resultText += "<span style='color:orange;'>You are underweight.</span>";
+                    } else if (bmi >= 18.5 && bmi < 24.9) {
+                        resultText += "<span style= 'color: green;'>You are in the normal weight range.</span>";
+                    } else if (bmi >= 25 && bmi < 29.9) {
+                        resultText += "<span style='color:orange;'>You are overweight.</sapn>";
+                    } else {
+                        resultText += "<span style='color:red;'>You are obese.</span>";
+                    }
+                } else if (age >= 25 && age <= 64) {
+                   
+                    if (bmi < 18.5) {
+                        resultText += "<span style='color:orange;'>You are underweight.</span>";
+                    } else if (bmi >= 18.5 && bmi < 24.9) {
+                        resultText += "<span style= 'color: green;'>You are in the normal weight range.</span>";
+                    } else if (bmi >= 25 && bmi < 29.9) {
+                        resultText += "<span style='color:orange;'>You are overweight.</sapn>";
+                    } else {
+                        resultText += "<span style='color:red;'>You are obese.</span>";
+                    }
+                } else if (age >=65) {
+                    if (bmi < 23) {
+                        resultText += "<span style='color:orange;'>You are underweight.</span>";
+                    } else if (bmi >= 23 && bmi < 30) {
+                        resultText += "<span style= 'color: green;'>You are in the normal weight range.</span>";
+                    } else if (bmi >= 30 && bmi < 40) {
+                        resultText += "<span style='color:orange;'>You are overweight.</sapn>";
+                    } else {
+                        resultText += "<span style='color:red;'>You are obese.</span>";
+                    }
+
+                }
+            } else if (gender == 'female') {
+                if (age < 18 && bmi < 16) {
+                    resultText += "<span style='color: red;'> Severely underweight</span>";
+                } 
+                else if (age < 18 && bmi < 18.5){
+                    resultText += "<span style='color: orange;'>Mildly underweight</span>";
+                }
+                else if (age <= 18 && bmi < 25){
+                    resultText += "<span style='color: green;'>Normal weight</span>";
+                }
+                else if (age < 18 && bmi < 30){
+                    resultText += "<span style='color: orange;'>Overweight</span>";
+                }
+                else if (age < 18 && bmi >= 40){
+                    resultText += "<span style='color: red;'>You are in obese</span>";
+                }
+                
+                else if (age >= 18 && age <= 24) {
+                    if (bmi < 18.5) {
+                        resultText += "<span style='color:orange;'>You are underweight.</span>";
+                    } else if (bmi >= 18.5 && bmi < 24.9) {
+                        resultText += "<span style= 'color: green;'>You are in the normal weight range.</span>";
+                    } else if (bmi >= 25 && bmi < 29.9) {
+                        resultText += "<span style='color:orange;'>You are overweight.</sapn>";
+                    } else {
+                        resultText += "<span style='color:red;'>You are obese.</span>";
+                    }
+                    
+                } else if (age >= 25 && age <= 64) {
+                    if (bmi < 18.5) {
+                        resultText += "<span style='color:orange;'>You are underweight.</span>";
+                    } else if (bmi >= 18.5 && bmi < 24.9) {
+                        resultText += "<span style= 'color: green;'>You are in the normal weight range.</span>";
+                    } else if (bmi >= 25 && bmi < 29.9) {
+                        resultText += "<span style='color:orange;'>You are overweight.</sapn>";
+                    } else {
+                        resultText += "<span style='color:red;'>You are obese.</span>";
+                    }
+                } else {
+                    if (bmi < 23) {
+                        resultText += "<span style='color:orange;'>You are underweight.</span>";
+                    } else if (bmi >= 23 && bmi < 30) {
+                        resultText += "<span style= 'color: green;'>You are in the normal weight range.</span>";
+                    } else if (bmi >= 30 && bmi < 40) {
+                        resultText += "<span style='color:orange;'>You are overweight.</sapn>";
+                    } else {
+                        resultText += "<span style='color:red;'>You are obese.</span>";
+                    }
+                }
+            }
+
+            document.getElementById('result').innerHTML = resultText;
+        }
+
+        function clearInput() {
+            document.getElementById('age').value = '';
+            document.getElementById('height').value = '';
+            document.getElementById('weight').value = '';
+        }
+    </script>
+
+</head>
+<body class="container-fluid">
+    <div class="border border-2 p-3 mt-3 w-50 bg-body-secondary">
+        <h2 style="text-align: center;">BMI Calculator</h2>
+    </div>
+    <div class="content w-50 h-50 border border-2 bg-body-tertiary">
+        <div class="row mt-5 ">
+            <div class="col ms-4  d-flex">
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="male" checked> Male
+        <input type="radio" name="gender" value="female"> Female
+            </div>
+            <div class="col d-flex">
+        <label>Age:</label>
+        <input type="number" id="age">
+            </div>
+        </div>
+
+        <div class="row mt-5 pb-4">
+            <div class="col d-flex ms-4">
+        <label>Height (cm):</label>
+        <input type="number" id="height">
+            </div>
+            <div class="col d-flex">
+        <label>Weight (kg):</label>
+        <input type="number" id="weight">
+    </div>
+    </div>
+
+    </div>
+    <div class="d-flex" style="margin-left: 250px;">
+    <button class="mt-3 btn btn-info" onclick="CalculateClick()" tyle="margin-left: 300px;">Calculate BMI</button>
+    <button type="reset" class="btn btn-warning mt-3 ms-2"  onclick="clearInput()">Clear</button>
+    </div>
+    <div class="mt-3">Your BMI will be displayed here. <span class="bi bi-arrow-down"></span></div>
+    <div class="mt-3 border border-2 w-50" id="result"></div>
+    </body>
+</html>
